@@ -1,0 +1,71 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {//starter code provided
+
+public static void main(String[] args) {//the errors are rectified as shown below
+ArrayList<String> products = new ArrayList<String>();
+ArrayList<Double> prices = new ArrayList<Double>();
+products.add("Bison Sweater");
+prices.add(55.99);
+products.add("Bison Tee");
+prices.add(14.99);
+products.add("Bison Hoodie");
+prices.add(23.99);
+products.add("Bison Bumpersticker");
+prices.add(4.99);
+
+Scanner input = new Scanner(System.in);
+String answer = "";
+ArrayList<String> purchases = new ArrayList<String>();
+ArrayList<Double> costs=new ArrayList<Double>();
+do {
+System.out.println("What do you want to do?");
+System.out.println("1) add purchase 2) change purchase 3) show purchases 4) finish transaction");
+answer = input.nextLine();
+
+if (answer.equals("1")) {
+for (int i = 0; i < products.size(); i++) {
+System.out.println(prices.get(i) + " - " + products.get(i));
+}
+System.out.println();
+System.out.println("What item do you want to add?");
+String addProd = input.nextLine();
+  
+  
+for (int i = 0; i < products.size(); i++) {
+if (products.get(i).equals(addProd)) {
+costs.add(prices.get(i));
+purchases.add(addProd);
+}
+}
+
+} if (answer.equals("2")) {
+System.out.println("Current items in purchase:");
+for (int i = 0; i < costs.size(); i++) {
+System.out.println(costs.get(i) + " - " + purchases.get(i));
+}
+System.out.println("What item do you want to remove from purchase?");
+String prod = input.nextLine();
+for (int i = 0; i < purchases.size(); i++) {
+if (purchases.get(i).equals(prod)) {
+purchases.remove(i);
+costs.remove(i);
+}
+}
+} if (answer.equals("3")) {
+for (int i = 0; i < costs.size(); i++) {
+System.out.println(costs.get(i) + " - " + purchases.get(i));
+}
+}
+
+} while (! answer.equals("4"));
+float total = 0f;
+for (int i = 0; i < costs.size(); i++) {
+double item = costs.get(i);
+total += item;
+}
+System.out.println("Your order total is: $" + total);
+System.out.println("Thank you for ordering!");
+}
+}
